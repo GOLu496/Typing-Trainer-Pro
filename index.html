@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,18 +126,60 @@
 
         h1 { margin: 0; font-weight: 600; }
 
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.glow {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 9999px;
+
+    background: transparent;
+    overflow: hidden;
+}
+
+.glow::before {
+    content: "";
+    position: absolute;
+    right: -670px;
+    top: -190px;
+    insert: -50%;
+    width: 2700px;
+    height: 2700px;
+    background: conic-gradient(
+        #4285f4,
+        #ea4335,
+        #fbbc05,
+        #34a853,
+        #4285f4
+    );
+    animation: google-ring-spin 3s linear infinite;
+}
+  .glow {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+            padding: 0px;
+            background-color: red;
+            border-radius: 0px;
+            position: relative;
+        }
+
+
+
         .container {
             width: 90%;
             max-width: 1100px;
             margin-top: 30px;
+            margin-bottom: 30px;
             padding: 20px;
             background-color: #E3E3E3;
             border-radius: 12px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-
-
+/* ------------------------------------------------------------------------------------------------------------------------------------*/
         .stats-panel {
             display: flex;
             justify-content: space-around;
@@ -312,8 +355,8 @@
         <h1>Typing Trainer Pro</h1>
     </header>
 
-    <main class="container">
-
+    <main class="glow" style="colour: blue;">
+<div class="container">
         <div class="stats-panel">
             <p>Net Speed: <span id="net-wpm">0</span> WPM</p>
             <p>Accuracy: <span id="accuracy">100</span>%</p>
@@ -355,7 +398,7 @@
 <div class="border-wrapper">
         <textarea id="text-input" class="inner-button" style="colour: #D1FFFF;" placeholder="Type here when the countdown finishes..." autofocus enhanced>
         </textarea>
-</div>
+</div> </div>
     </main>
 
     <div id="popup-overlay" class="popup-overlay">
