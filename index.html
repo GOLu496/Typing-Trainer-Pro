@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Typing Master</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+.gradient-border-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 9999px;
+
+    background: transparent;
+    overflow: hidden;
+}
+
+.border-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 10px;
+    background: transparent;
+    overflow: hidden;
+}
+
+
+
+.gradient-border-wrapper::before {
+    content: "";
+    position: absolute;
+    right: -17px;
+    top: -38px;
+    insert: -50%;
+    width: 150px;
+    height: 150px;
+    background: conic-gradient(
+        #4285f4,
+        #ea4335,
+        #fbbc05,
+        #34a853,
+        #4285f4
+    );
+    animation: google-ring-spin 3s linear infinite;
+}
+
+
+.border-wrapper::before {
+    content: "";
+    position: absolute;
+    right: -70px;
+    top: -450px;
+    insert: -50%;
+    width: 1200px;
+    height: 1200px;
+    background: conic-gradient(
+        #4285f4,
+        #ea4335,
+        #fbbc05,
+        #34a853,
+        #4285f4
+    );
+    animation: google-ring-spin 3s linear infinite;
+}
+.gradient-border-wrapper .inner-button {
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 26px;
+    background: #111;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+@keyframes google-ring-spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.border-wrapper .inner-button {
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 60px 440px;
+    background: #D1FFFF;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+@keyframes google-ring-spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+            body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #424242;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { margin: 0; font-weight: 600; }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #E3E3E3;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+
+        .stats-panel {
+            display: flex;
+            justify-content: space-around;
+            background-color: #BDBDBD;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 500;
+            border-left: 5px solid #007bff;
+        }
+        .stats-panel p { margin: 0; }
+        .stats-panel span { font-weight: 700; color: #d9534f; }
+        #net-wpm, #accuracy { color: #5cb85c; }
+
+
+        .graph-container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            height: 350px;
+            background-color: #BDBDBD;
+        }
+
+
+        .typing-text-display {
+            background-color: #ADFF5C;
+            padding: 25px;
+            border-radius: 8px;
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            min-height: 120px;
+            border: 2px solid #ccc;
+            user-select: none;
+        }
+
+
+        .correct { color: #5cb85c; }
+        .incorrect {
+            background-color: #f2dede;
+            color: #a94442;
+            border-bottom: 1px dashed #a94442;
+        }
+        .current {
+            background-color: #007bff40;
+            border-right: 2px solid #007bff;
+            animation: blink 1s step-start 0s infinite;
+        }
+        @keyframes blink { 50% { border-right-color: transparent; } }
+
+
+        .text-input {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            font-size: 1.4em;
+            resize: none;
+            background-color: #BDBDBD;
+            color: #333;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+        }
+        .text-input:focus { box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .controls select, .controls input[type="number"] {
+            padding: 10px 18px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #BDBDBD;
+            color: #333;
+        }
+
+
+        .loading-text { color: #007bff; font-style: italic; }
+
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+        .popup-content.show {
+            transform: scale(1);
+        }
+
+
+        .popup-content h2 { color: #d9534f; font-size: 2.5em; margin-top: 0; }
+        .popup-content .result-stats p { font-size: 1.2em; font-weight: 500; }
+        .popup-content .result-stats span { font-weight: 700; color: #007bff; }
+        .popup-content img { width: 80px; height: 80px; margin-bottom: 20px; }
+
+
+        .countdown-number {
+            font-size: 10em;
+            font-weight: 900;
+            color: #5cb85c;
+            animation: pulse 1s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .popup-controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .popup-controls button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .popup-controls button:hover {
+            background-color: #449d44;
+        }
+        .popup-time-select {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .popup-time-select select, .popup-time-select input {
+             padding: 8px;
+             border: 1px solid #ced4da;
+             border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Typing Trainer Pro</h1>
+    </header>
+
+    <main class="container">
+
+        <div class="stats-panel">
+            <p>Net Speed: <span id="net-wpm">0</span> WPM</p>
+            <p>Accuracy: <span id="accuracy">100</span>%</p>
+            <p>Errors: <span id="errors-count">0</span></p>
+            <p>Time Left: <span id="time-left">60</span>s</p>
+        </div>
+
+        <div class="graph-container">
+            <h3>WPM Consistency (Per 5 seconds)</h3>
+            <canvas id="wpm-chart"></canvas>
+        </div>
+
+        <div id="initial-controls" class="controls">
+            <select id="time-select">
+                <option value="60">1 Minute</option>
+                <option value="180">3 Minutes</option>
+                <option value="300">5 Minutes</option>
+                </select>
+            <input type="number" id="custom-time" min="10" max="600" value="60" placeholder="Custom Time (s)">
+
+            <select id="lesson-mode">
+                <option value="news">Dynamic News (Recommended)</option>
+                <option value="standard">Static Paragraph</option>
+                <option value="code">Code Syntax</option>
+            </select>
+     <div class="gradient-border-wrapper">
+  <button <button id="initial-start-btn" class="inner-button" style="background-color: black;
+   ">Start Test</button> </div>
+
+
+</div>
+        <div id="typing-text-display" class="typing-text-display loading-text">
+            Loading Fresh Content... Please wait.
+        </div>
+
+
+
+
+<div class="border-wrapper">
+        <textarea id="text-input" class="inner-button" style="colour: #D1FFFF;" placeholder="Type here when the countdown finishes..." autofocus enhanced>
+        </textarea>
+</div>
+    </main>
+
+    <div id="popup-overlay" class="popup-overlay">
+        <div id="popup-content" class="popup-content">
+            </div>
+    </div>
+
+    <script>
+        // --- Global State ---
+        let state = {
+            testText: "",
+            currentCharIndex: 0,
+            totalErrors: 0,
+            correctKeystrokes: 0,
+            incorrectKeystrokes: 0,
+            timerId: null,
+            initialTime: 60,
+            timeLeft: 60,
+            isRunning: false,
+            wpmHistory: [],
+            historyLabels: [],
+            timeElapsed: 0,
+        };
+
+        // --- DOM Elements ---
+        const textDisplay = document.getElementById('typing-text-display');
+        const textInput = document.getElementById('text-input');
+        const modeSelect = document.getElementById('lesson-mode');
+        const timeSelect = document.getElementById('time-select');
+        const customTimeInput = document.getElementById('custom-time');
+        const netWpmEl = document.getElementById('net-wpm');
+        const accuracyEl = document.getElementById('accuracy');
+        const errorsCountEl = document.getElementById('errors-count');
+        const timeLeftEl = document.getElementById('time-left');
+        const popupOverlay = document.getElementById('popup-overlay');
+        const popupContent = document.getElementById('popup-content');
+        const initialStartBtn = document.getElementById('initial-start-btn');
+
+        // Static Text Bank
+        const textBank = {
+            standard: "A journey of a thousand miles begins with a single step. The only way to do great work is to love what you do. Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            code: "function fetchData(url) { return fetch(url).then(response => response.json()).catch(error => console.error('Error fetching:', error)); }",
+        };
+
+        // Simulated Dynamic Content (Shows different content each time)
+        const newsBank = [
+            "Global technology giants unveil new AI models focusing on natural language processing, promising enhanced conversational capabilities for enterprise applications worldwide. Cybersecurity remains a top concern.",
+            "Local council passes a comprehensive bill to increase public funding for arts and culture initiatives, aiming to revitalize city centers and support emerging local talent across various creative fields.",
+            "The final leg of the international athletic championship concludes with record-breaking performances in long-distance running, setting a new benchmark for endurance sports globally. The host nation celebrates.",
+        ];
+        let newsIndex = 0;
+
+
+        // --- Chart Setup ---
+        const ctx = document.getElementById('wpm-chart').getContext('2d');
+        const wpmChart = new Chart(ctx, {
+            type: 'line',
+            data: { labels: [], datasets: [{ label: 'Net WPM', data: [], borderColor: '#007bff', backgroundColor: '#007bff40', borderWidth: 2, tension: 0.4, fill: true }] },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'WPM' } }, x: { title: { display: true, text: '' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // --- Core Functions ---
+
+        async function fetchDynamicContent() {
+            textDisplay.textContent = "Loading Fresh Content...";
+            textDisplay.classList.add('loading-text');
+            textInput.disabled = true;
+
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const newsContent = newsBank[newsIndex % newsBank.length];
+            newsIndex++; // Next time, a new article will be selected
+
+            textDisplay.textContent = '';
+            textDisplay.classList.remove('loading-text');
+            return newsContent;
+        }
+
+        async function loadText() {
+            const mode = modeSelect.value;
+            let content;
+
+            if (mode === 'news') {
+                content = await fetchDynamicContent();
+            } else {
+                content = textBank[mode];
+            }
+
+            state.testText = content;
+            textDisplay.innerHTML = '';
+            state.testText.split('').forEach((char, index) => {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                if (index === 0) {
+                    charSpan.classList.add('current');
+                }
+                textDisplay.appendChild(charSpan);
+            });
+        }
+
+        function updateMetrics() {
+            state.timeElapsed = state.initialTime - state.timeLeft;
+            const timeInMinutes = state.timeElapsed / 60;
+
+            const totalKeystrokes = state.correctKeystrokes + state.incorrectKeystrokes;
+
+            let netWPM = ((state.correctKeystrokes / 5) - state.totalErrors) / timeInMinutes;
+            if (netWPM < 0 || timeInMinutes === 0) {
+                netWPM = 0;
+            }
+
+            let accuracy = (totalKeystrokes > 0) ? (state.correctKeystrokes / totalKeystrokes) * 100 : 100;
+
+            // Update Display
+            netWpmEl.textContent = Math.round(netWPM);
+            accuracyEl.textContent = Math.round(accuracy);
+            errorsCountEl.textContent = state.totalErrors;
+
+            // Chart Update (Every 5 seconds)
+            if (state.timeElapsed % 5 === 0 && state.timeElapsed > 0 && state.timeLeft > 0) {
+                state.wpmHistory.push(Math.round(netWPM));
+                state.historyLabels.push(state.timeElapsed);
+
+                wpmChart.data.labels = state.historyLabels;
+                wpmChart.data.datasets[0].data = state.wpmHistory;
+                wpmChart.update();
+            }
+        }
+
+        function updateTimer() {
+            if (state.timeLeft > 0) {
+                state.timeLeft--;
+                timeLeftEl.textContent = state.timeLeft;
+                updateMetrics();
+            } else {
+                clearInterval(state.timerId);
+                state.isRunning = false;
+                updateMetrics();
+                showResultsPopup(); // Show the new results pop-up
+            }
+        }
+
+        function startTest() {
+            if (state.isRunning) return;
+
+            popupOverlay.style.display = 'none'; // Hide pop-up
+            state.isRunning = true;
+            textInput.disabled = false;
+            textInput.focus();
+
+            // Start Timer
+            state.timerId = setInterval(updateTimer, 1000);
+        }
+
+        function handleInput(event) {
+            if (!state.isRunning) return; // Ignore input if not running
+
+            const typedValue = textInput.value;
+            const currentTypedChar = typedValue[typedValue.length - 1];
+            const targetChar = state.testText[state.currentCharIndex];
+            const textSpans = textDisplay.querySelectorAll('span');
+
+            if (event.inputType === 'deleteContentBackward') {
+                if (state.currentCharIndex > 0) {
+                    state.currentCharIndex--;
+                    textSpans[state.currentCharIndex].classList.remove('correct', 'incorrect');
+                    textSpans[state.currentCharIndex].classList.add('current');
+                    if (textSpans[state.currentCharIndex + 1]) {
+                        textSpans[state.currentCharIndex + 1].classList.remove('current');
+                    }
+                }
+                return;
+            }
+
+            if (state.currentCharIndex >= state.testText.length) {
+                return;
+            }
+
+            textSpans[state.currentCharIndex].classList.remove('current');
+
+            if (currentTypedChar === targetChar) {
+                textSpans[state.currentCharIndex].classList.add('correct');
+                state.correctKeystrokes++;
+            } else {
+                textSpans[state.currentCharIndex].classList.add('incorrect');
+                state.incorrectKeystrokes++;
+                state.totalErrors++;
+            }
+
+            state.currentCharIndex++;
+
+            if (state.currentCharIndex === state.testText.length) {
+                state.timeLeft = 0;
+                updateTimer();
+                return;
+            }
+
+            if (textSpans[state.currentCharIndex]) {
+                textSpans[state.currentCharIndex].classList.add('current');
+            }
+        }
+
+        // --- Pop-up Logic ---
+
+        function showResultsPopup() {
+            const finalWPM = netWpmEl.textContent;
+            const finalAccuracy = accuracyEl.textContent;
+
+            popupContent.innerHTML = `
+                <h2>Time's Up! Test Completed</h2>
+                <img src="https://img.icons8.com/color/96/000000/finish-flag.png" alt="Finish Flag Icon"/>
+                <div class="result-stats">
+                    <p>Net WPM: <span>${finalWPM}</span></p>
+                    <p>Accuracy: <span>${finalAccuracy}%</span></p>
+                    <p>Total Errors: <span>${errorsCountEl.textContent}</span></p>
+                </div>
+                <div class="popup-controls">
+                    <button onclick="startCountdown()">Restart Test</button>
+                    <div class="popup-time-select">
+                        <select id="popup-time-select">
+                            <option value="60">1 Min</option>
+                            <option value="180">3 Mins</option>
+                            <option value="300">5 Mins</option>
+                        </select>
+                        <input type="number" id="popup-custom-time" min="10" max="600" value="${state.initialTime}" placeholder="Custom (s)">
+                    </div>
+                </div>
+            `;
+
+            // Sync time options to the popup
+            document.getElementById('popup-time-select').value = state.initialTime;
+            document.getElementById('popup-custom-time').value = state.initialTime;
+
+            popupOverlay.style.display = 'flex';
+            popupContent.classList.add('show');
+
+            // Attach listeners to popup controls
+            document.getElementById('popup-time-select').addEventListener('change', syncTimeAndReset);
+            document.getElementById('popup-custom-time').addEventListener('change', syncTimeAndReset);
+        }
+
+        function startCountdown() {
+            let count = 3;
+            popupContent.innerHTML = `<div class="countdown-number">${count}</div>`;
+            popupOverlay.style.display = 'flex';
+            popupContent.classList.add('show');
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    popupContent.innerHTML = `<div class="countdown-number">${count}</div>`;
+                } else if (count === 0) {
+                    popupContent.innerHTML = `<div class="countdown-number">GO!</div>`;
+                } else {
+                    clearInterval(countdownInterval);
+                    startTest();
+                }
+            }, 1000);
+        }
+
+        // --- Reset Logic (Called by all controls) ---
+
+        function syncTimeAndReset() {
+             // Get time from pop-up or initial control
+            let newTimeEl = document.getElementById('popup-custom-time') || customTimeInput;
+            let selectEl = document.getElementById('popup-time-select') || timeSelect;
+
+            let newTime = parseInt(selectEl.value);
+
+            // If custom time input has a value, override the select value
+            if (newTimeEl.value) {
+                newTime = parseInt(newTimeEl.value);
+            }
+
+            if (isNaN(newTime) || newTime < 10) newTime = 60;
+
+            // Update both main and popup/initial controls to reflect the change
+            timeSelect.value = newTime;
+            customTimeInput.value = newTime;
+            if (document.getElementById('popup-time-select')) {
+                 document.getElementById('popup-time-select').value = newTime;
+                 document.getElementById('popup-custom-time').value = newTime;
+            }
+
+            resetTest(newTime);
+        }
+
+        function resetTest(newTime) {
+            clearInterval(state.timerId);
+
+            const timeToSet = newTime || state.initialTime; // Use newTime if provided
+
+            // Reset state
+            state = {
+                testText: state.testText,
+                currentCharIndex: 0,
+                totalErrors: 0,
+                correctKeystrokes: 0,
+                incorrectKeystrokes: 0,
+                timerId: null,
+                initialTime: timeToSet,
+                timeLeft: timeToSet,
+                isRunning: false,
+                wpmHistory: [],
+                historyLabels: [],
+                timeElapsed: 0,
+            };
+
+            // Reset DOM
+            textInput.value = '';
+            textInput.disabled = true; // Disable input until countdown starts
+            timeLeftEl.textContent = state.initialTime;
+            netWpmEl.textContent = '0';
+            accuracyEl.textContent = '100';
+            errorsCountEl.textContent = '0';
+
+            // Reset Chart
+            wpmChart.data.labels = [];
+            wpmChart.data.datasets[0].data = [];
+            wpmChart.update();
+
+            popupOverlay.style.display = 'none'; // Hide pop-up if visible
+
+            loadText(); // Load new text based on mode
+        }
+
+        // --- Event Listeners ---
+        textInput.addEventListener('input', handleInput);
+
+        // Initial start button
+        initialStartBtn.addEventListener('click', () => {
+             syncTimeAndReset(); // Ensure time is synced and content is loaded
+             startCountdown();
+        });
+
+        // Controls (Mode/Time change only loads content/sets time, does not start)
+        modeSelect.addEventListener('change', syncTimeAndReset);
+        timeSelect.addEventListener('change', syncTimeAndReset);
+        customTimeInput.addEventListener('change', syncTimeAndReset);
+
+        // --- Initial Setup ---
+        syncTimeAndReset();
+    </script>
+</body>
+</html>
