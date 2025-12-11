@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Typing Master</title>
+    <title>Typing Trainer Pro</title>
+    <link rel="icon" type="jpg" href="icon.jpg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -25,6 +27,7 @@
     border-radius: 10px;
     background: transparent;
     overflow: hidden;
+    width:100%;
 }
 
 
@@ -89,10 +92,10 @@
     z-index: 1;
     border: none;
     border-radius: 10px;
-    padding: 60px 440px;
+    padding: 60px;
     background: #D1FFFF;
     color: black;
-    font-size: 1rem;
+    font-size: 1.4em;
     cursor: pointer;
 }
 
@@ -116,7 +119,6 @@
 
 
 
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
  .glow header {
             width: 85%;
@@ -184,11 +186,10 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-/* ------------------------------------------------------------------------------------------------------------------------------------*/
-        .stats-panel {
+       .stats-panel {
             display: flex;
             justify-content: space-around;
-            background-color: #BDBDBD;
+            background-color: #A6D2FF;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -207,7 +208,7 @@
             border-radius: 8px;
             margin-bottom: 20px;
             height: 350px;
-            background-color: #BDBDBD;
+            background-color:#A6D2FF;
         }
 
 
@@ -239,14 +240,14 @@
 
 
         .text-input {
-            width: 5%;
+            width: 100%;
             height: 100px;
             padding: 15px;
             border: 2px solid #007bff;
             border-radius: 8px;
             font-size: 1.4em;
             resize: none;
-            background-color: #BDBDBD;
+            background-color: #A6D2FF;
             color: #333;
             box-sizing: border-box;
             outline: none;
@@ -266,7 +267,7 @@
             border: 1px solid #ced4da;
             border-radius: 5px;
             font-size: 1em;
-            background-color: #BDBDBD;
+            background-color: #A6D2FF;
             color: #333;
         }
 
@@ -407,7 +408,7 @@
 
 
 <div class="border-wrapper">
-        <textarea id="text-input" class="inner-button" style="colour: #D1FFFF;" placeholder="Type here when the countdown finishes..." autofocus enhanced>
+        <textarea id="text-input" class="inner-button" style="colour: #D1FFFF; width:100%;" placeholder="Type here when the countdown finishes..." autofocus enhanced>
         </textarea>
 </div> </div>
     </main>
@@ -418,7 +419,7 @@
     </div>
 
     <script>
-        // --- Global State ---
+
         let state = {
             testText: "",
             currentCharIndex: 0,
@@ -434,7 +435,7 @@
             timeElapsed: 0,
         };
 
-        // --- DOM Elements ---
+
         const textDisplay = document.getElementById('typing-text-display');
         const textInput = document.getElementById('text-input');
         const modeSelect = document.getElementById('lesson-mode');
@@ -448,43 +449,57 @@
         const popupContent = document.getElementById('popup-content');
         const initialStartBtn = document.getElementById('initial-start-btn');
 
-        // Static Text Bank
 
-        // Simulated Dynamic Content (Shows different content each time)
-        // Static Text Bank
 const textBank = {
     standard: "A journey of a thousand miles begins with a single step. The only way to do great work is to love what you do. Success is not final, failure is not fatal: it is the courage to continue that counts.",
     code: "function fetchData(url) { return fetch(url).then(response => response.json()).catch(error => console.error('Error fetching:', error)); }",
 };
 
-// --- NEW Static Content Pool (No internet fetch required) ---
-// Ab aapka 'news' mode is bade array se paragraphs chune ga.
+
 const newsBank = [
-    "Global leaders convened at the UN Climate Summit, committing to ambitious new targets for reducing greenhouse gas emissions by 2035, focusing heavily on transitioning from coal to renewable energy sources.",
-    "A major pharmaceutical breakthrough was announced today, involving a novel compound that shows promising results in early-stage trials for reversing certain types of age-related cognitive decline.",
-    "The International Space Agency successfully deployed the next generation of deep-space telescopes, which are expected to provide unprecedented views into the formation of early galaxies and exoplanets.",
-    "Stock markets across Asia experienced volatility this week following unexpected inflation data released by the regional central bank, leading to cautious trading in technology and consumer goods sectors.",
-    "Archaeologists in Egypt unearthed a remarkably well-preserved tomb dating back over 4,000 years, offering new insights into the burial rituals and social hierarchy of the Old Kingdom period.",
-    "Tech giants are facing increased regulatory scrutiny in Europe over data privacy and monopolistic practices, suggesting potential large-scale restructuring of digital advertising and search market dominance.",
-    "A new report highlights a significant global shift towards remote work, predicting that over 30% of high-skilled professional jobs will permanently transition out of traditional office environments by next year.",
-    "Massive forest fires in the Amazon region continue to challenge conservation efforts, prompting international calls for immediate funding and policy changes to protect vital biodiversity habitats.",
-    "Leading electric vehicle manufacturers introduced solid-state battery technology, promising double the range and significantly faster charging times than current lithium-ion power cells.",
-    "The world chess championship concluded with a surprising victory by a young challenger, marking a generational shift in dominance within the highly strategic and competitive sport.",
-    "Disputes over water rights intensified in several border regions following a year of severe drought, pushing diplomatic efforts to secure sustainable resource management agreements between neighboring countries.",
-    "Cryptocurrency adoption surged in developing economies, driven by rising inflation and a search for stable alternative investment and remittance methods among young entrepreneurs.",
-    "A collaborative scientific mission confirmed the existence of sub-glacial lakes on Mars, suggesting potential pockets of liquid water that could harbor microbial life or provide future resources.",
-    "Local governments are experimenting with four-day work weeks for public sector employees, aiming to boost productivity, improve employee well-being, and reduce urban commuting traffic congestion.",
-    "The entertainment industry is grappling with the rapid integration of advanced generative AI tools, raising complex questions about intellectual property, authorship, and the future role of human artists.",
-    "Major railway networks announced significant investments in hyperloop technology research, aiming to connect major metropolitan hubs with ultra-high-speed transit systems within the next decade.",
-    "New studies indicate that consumption of processed foods contributes more significantly to global health crises than previously estimated, prompting revised dietary guidelines and public health campaigns.",
-    "Political tensions escalated in a key maritime trade route after an incident involving naval vessels, leading to emergency diplomatic talks focused on maintaining freedom of navigation and regional stability.",
-    "Innovative vertical farming techniques utilizing LED lighting and controlled environments are being adopted by major cities to secure local, year-round fresh produce supply and minimize transport costs.",
-    "The global effort to combat vaccine-resistant diseases received a boost with the discovery of a new class of antibiotics derived from rare soil microorganisms found in remote mountainous regions."
+`The tragic fire at a popular nightclub in Goa has remained at the top of national headlines. On December 11 2025 authorities confirmed that twenty five people lost their lives in the blaze that broke out late at night when the club was crowded with patrons. The fire safety audit of the nightclub was under scrutiny as investigators worked through the night to reconstruct how the blaze began and spread so rapidly. Two brothers who owned and operated the nightclub were detained in Thailand early today.`,
+
+`Thai immigration officials said they were taken into custody based on an active request from Indian law enforcement. The brothers are expected to be deported to India later today to face questioning and possible charges related to negligence and violations of safety codes. Indian officials held an emergency press conference asking for full cooperation from their Thai counterparts. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Families of the victims expressed grief and anger at the slow pace of rescue efforts and demanded stricter enforcement of safety regulations in entertainment venues. Medical teams continued to treat burn victims in hospitals across Goa. The national government said it will cover medical expenses and provide support to the families of those who died and those still recovering in hospital. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Prime Minister Narendra Modi announced that he will undertake a diplomatic tour from December fifteen to December eighteen this year. The itinerary includes official visits to Jordan Ethiopia and Oman. In each country the prime minister is expected to discuss bilateral cooperation in areas such as energy water resources and trade. In Jordan he will meet with the king to strengthen relations and reaffirm partnership on regional stability.`,
+
+`In Ethiopia the focus will be on development aid agricultural technology and support for infrastructure projects. In Oman discussions will primarily center on maritime security and expanding economic ties. Senior government officials said that this tour reflects Indias commitment to engagement with West Asia and Africa. Preparations for the visits were finalized after months of consultation with ministries involved in foreign trade and defense. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`The prime ministers office released a statement saying the visits are part of efforts to boost economic growth and strengthen Indias global footprint. The announcement has been welcomed by business communities looking to expand exports to these regions. Each stop on the tour includes cultural events to build people to people ties. Indian expatriates in those countries have also expressed anticipation for the leaders visit. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`World leaders and diplomats continued efforts to find a negotiated peace in the ongoing war in Eastern Europe. On December 11 representatives of Ukraine submitted an updated peace proposal to Western allies including the United States. The new plan is said to contain around twenty points aimed at addressing key issues such as territorial security economic reconstruction and international guarantees. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Ukrainian officials stated that they want a ceasefire followed by phased disengagement of forces. Western diplomats praised the updated approach while stressing that talks remain difficult and that Russia must agree to meaningful concessions. The United States reiterated its support for Ukraine while urging all parties to avoid further escalation. Global markets watched the developments closely as the conflict has broad implications for energy prices and regional stability. Analysts said that any progress in peace negotiations could stabilize markets that have been volatile due to uncertainty.`,
+
+`Meanwhile humanitarian groups continued their work providing aid to civilians affected by the conflict. The United Nations called on all sides to protect civilians and ensure safe passage for aid deliveries. The peace plan submission has renewed hope among citizens weary of years of conflict. International observers reminded the world that durable peace will require sustained diplomacy not just a single agreement. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`The United States Federal Reserve announced a cut in benchmark interest rates this week as part of its ongoing effort to support slowing economic growth and bring inflation closer to target levels. The decision was widely anticipated by investors and economists who had seen recent data showing softening demand and uneven job gains. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Following the announcement global equity markets showed a mixed reaction with some indices rallying on optimism for cheaper borrowing costs and others retreating due to lingering concerns about corporate earnings. Emerging market currencies in Latin America strengthened against the dollar as capital flows responded to the rate cut. Analysts said that lower interest rates could ease pressure on developing economies that are struggling with high debt costs. At the same time many central bankers around the world said they are watching inflation trends carefully before making any further moves. Business leaders reacted by adjusting forecasts and revising investment strategies based on expected credit conditions.`,
+
+`Consumers were also affected as lower rates could translate to cheaper loans for homes and vehicles. Critics of the policy said the cut might come too late for some sectors facing structural challenges. Overall the markets and policymakers continue to balance the dual goals of promoting growth while avoiding overheating in key industries. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Authorities at the National Gallery of Modern Art inaugurated a new major exhibition titled Ghika A Journey to India on December 11. The exhibit showcases a comprehensive collection of works by the esteemed artist who is known for bridging artistic traditions from his home country and his adopted home of India. Curators emphasized the cultural dialogue reflected in the paintings which span across decades of the artists evolution.`,
+
+`The opening ceremony featured speeches by prominent art scholars and diplomats who noted the significance of cross cultural artistic exchange in todays globalized world. Visitors were moved by the vivid portrayals of Indian landscapes and daily life that reflect both nostalgia and modern artistic vision. The exhibition is expected to attract thousands of art lovers from across the country and abroad during its run.`,
+
+`Educational programs and workshops have been planned to engage students and emerging artists in discussions about technique and influence. Museum officials stated that this exhibit aligns with efforts to make modern art more accessible to the public. Critics writing in national publications have given positive early reviews on the show. Local schools are arranging field trips to the gallery to introduce younger audiences to varied artistic styles.`,
+
+`Regional weather authorities issued a series of alerts due to unusual climate patterns seen this season. In parts of southern and eastern regions meteorologists reported unseasonably heavy rainfall leading to flood warnings in low lying areas. Emergency services and local governments activated response teams to assist residents with evacuations and sandbagging efforts. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Transportation departments warned of disruptions on major highways and advised travelers to plan alternative routes. Farmers expressed concern about crop damage as fields became inundated with water that could delay harvests. State health officials reminded the public about the risks of waterborne diseases that can follow flooding and urged precautions such as purifying drinking water. Schools in the most affected districts announced temporary closures to ensure student safety. Municipal authorities are coordinating with relief agencies to set up shelters and distribute essential supplies.`,
+
+`A series of briefings kept citizens updated on changing conditions as weather models predicted more rain in the coming week. Climate scientists commented that such patterns of intense rainfall are consistent with shifting climate trends observed globally. Residents shared images on social media showing inundated streets and community efforts to keep homes clear of water damage. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`World diplomatic forums have seen renewed calls for cooperation on several geopolitical flashpoints. On December 11 representatives from multiple nations met to discuss pressing issues including border disputes trade barriers and humanitarian access in troubled regions. Delegates emphasized the importance of upholding international law and protecting human rights in all negotiations. Use and share with friends our Typing trainer Pro because you deserves better`,
+
+`Several speeches highlighted the need for sustained economic cooperation to ensure global stability during times of uncertainty. Diplomats also discussed ongoing conflicts and the importance of creating safe corridors for civilians. The meeting included updates on refugee flows and strategies for improving support services in host countries. Trade officials and economic leaders shared insights about reducing barriers while balancing national interests. Many attending envoys noted that cooperation rather than confrontation is essential for addressing the complex issues facing the world.`,
+
+`Joint statements were prepared outlining shared objectives but also acknowledging areas where consensus remains difficult. The forums concluded with commitments to reconvene later in the year for further consultations. Participants expressed optimism that dialogue remains the path forward for resolving many of the challenges confronting the global community. Use and share with friends our Typing trainer Pro because you deserves better`
 ];
- // Use this to cycle through the paragraphs sequentially or randomly.
 
-
-        // --- Chart Setup ---
         const ctx = document.getElementById('wpm-chart').getContext('2d');
         const wpmChart = new Chart(ctx, {
             type: 'line',
@@ -496,7 +511,6 @@ const newsBank = [
             }
         });
 
-        // --- Core Functions ---
 
 
 
@@ -538,12 +552,12 @@ const newsBank = [
 
             let accuracy = (totalKeystrokes > 0) ? (state.correctKeystrokes / totalKeystrokes) * 100 : 100;
 
-            // Update Display
+
             netWpmEl.textContent = Math.round(netWPM);
             accuracyEl.textContent = Math.round(accuracy);
             errorsCountEl.textContent = state.totalErrors;
 
-            // Chart Update (Every 5 seconds)
+
             if (state.timeElapsed % 5 === 0 && state.timeElapsed > 0 && state.timeLeft > 0) {
                 state.wpmHistory.push(Math.round(netWPM));
                 state.historyLabels.push(state.timeElapsed);
@@ -563,25 +577,24 @@ const newsBank = [
                 clearInterval(state.timerId);
                 state.isRunning = false;
                 updateMetrics();
-                showResultsPopup(); // Show the new results pop-up
+                showResultsPopup();
             }
         }
 
         function startTest() {
             if (state.isRunning) return;
 
-            popupOverlay.style.display = 'none'; // Hide pop-up
+            popupOverlay.style.display = 'none';
             state.isRunning = true;
             textInput.disabled = false;
             textInput.focus();
 
-            // Start Timer
+
             state.timerId = setInterval(updateTimer, 1000);
         }
 
         function handleInput(event) {
-            if (!state.isRunning) return; // Ignore input if not running
-
+            if (!state.isRunning) return;
             const typedValue = textInput.value;
             const currentTypedChar = typedValue[typedValue.length - 1];
             const targetChar = state.testText[state.currentCharIndex];
@@ -627,16 +640,16 @@ const newsBank = [
             }
         }
 
-        // --- Pop-up Logic ---
+
 
      function showResultsPopup() {
-    // Apne pasand ki image ka URL yahan set karein
-    const BACKGROUND_IMAGE_URL = 'Time.png'; // Example URL
+
+    const BACKGROUND_IMAGE_URL = 'Time.png';
 
     const finalWPM = netWpmEl.textContent;
     const finalAccuracy = accuracyEl.textContent;
 
-    // Poora content template naye style aur positioning ke saath
+
     popupContent.innerHTML = `
 
         <div id="result-background" style="
@@ -695,27 +708,17 @@ const newsBank = [
         </div>
     `;
 
-    // Ensure the overall pop-up container (popupContent) is correctly sized and positioned relative to body.
-    // Aapko apni CSS file mein .popup-content ko manually adjust karna padega.
-    // Recommended CSS adjustments (Agar yeh aapke main CSS mein nahi hain):
-    /*
-    .popup-content {
-        position: relative;
-        width: 450px;
-        height: 350px;
-        padding: 0;
-        background-color: white; /* Ya jo bhi aap chahte hain *
-    }
-    */
 
-    // Sync time options to the popup
+
+
+
     document.getElementById('popup-time-select').value = state.initialTime;
     document.getElementById('popup-custom-time').value = state.initialTime;
 
     popupOverlay.style.display = 'flex';
     popupContent.classList.add('show');
 
-    // Attach listeners to popup controls
+
     document.getElementById('popup-time-select').addEventListener('change', syncTimeAndReset);
     document.getElementById('popup-custom-time').addEventListener('change', syncTimeAndReset);
 }
@@ -739,23 +742,22 @@ const newsBank = [
             }, 1000);
         }
 
-        // --- Reset Logic (Called by all controls) ---
+
 
         function syncTimeAndReset() {
-             // Get time from pop-up or initial control
-            let newTimeEl = document.getElementById('popup-custom-time') || customTimeInput;
+                         let newTimeEl = document.getElementById('popup-custom-time') || customTimeInput;
             let selectEl = document.getElementById('popup-time-select') || timeSelect;
 
             let newTime = parseInt(selectEl.value);
 
-            // If custom time input has a value, override the select value
+
             if (newTimeEl.value) {
                 newTime = parseInt(newTimeEl.value);
             }
 
             if (isNaN(newTime) || newTime < 10) newTime = 60;
 
-            // Update both main and popup/initial controls to reflect the change
+
             timeSelect.value = newTime;
             customTimeInput.value = newTime;
             if (document.getElementById('popup-time-select')) {
@@ -769,9 +771,8 @@ const newsBank = [
         function resetTest(newTime) {
             clearInterval(state.timerId);
 
-            const timeToSet = newTime || state.initialTime; // Use newTime if provided
+            const timeToSet = newTime || state.initialTime;
 
-            // Reset state
             state = {
                 testText: state.testText,
                 currentCharIndex: 0,
@@ -787,39 +788,36 @@ const newsBank = [
                 timeElapsed: 0,
             };
 
-            // Reset DOM
+
             textInput.value = '';
-            textInput.disabled = true; // Disable input until countdown starts
+            textInput.disabled = true;
             timeLeftEl.textContent = state.initialTime;
             netWpmEl.textContent = '0';
             accuracyEl.textContent = '100';
             errorsCountEl.textContent = '0';
 
-            // Reset Chart
+
             wpmChart.data.labels = [];
             wpmChart.data.datasets[0].data = [];
             wpmChart.update();
 
-            popupOverlay.style.display = 'none'; // Hide pop-up if visible
+            popupOverlay.style.display = 'none';
 
-            loadText(); // Load new text based on mode
+            loadText();
         }
 
-        // --- Event Listeners ---
         textInput.addEventListener('input', handleInput);
-
-        // Initial start button
         initialStartBtn.addEventListener('click', () => {
-             syncTimeAndReset(); // Ensure time is synced and content is loaded
+             syncTimeAndReset();
              startCountdown();
         });
 
-        // Controls (Mode/Time change only loads content/sets time, does not start)
+
         modeSelect.addEventListener('change', syncTimeAndReset);
         timeSelect.addEventListener('change', syncTimeAndReset);
         customTimeInput.addEventListener('change', syncTimeAndReset);
 
-        // --- Initial Setup ---
+
         syncTimeAndReset();
     </script>
 </body>
