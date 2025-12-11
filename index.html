@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +20,7 @@
 
 .border-wrapper {
     position: relative;
-    display: inline-block;
+    display: flex;
     padding: 3px;
     border-radius: 10px;
     background: transparent;
@@ -52,11 +51,11 @@
 .border-wrapper::before {
     content: "";
     position: absolute;
-    right: -70px;
-    top: -450px;
+    right: -15%;
+    top: -470px;
     insert: -50%;
-    width: 1200px;
-    height: 1200px;
+    width: 130%;
+    height: 700%;
     background: conic-gradient(
         #4285f4,
         #ea4335,
@@ -115,9 +114,15 @@
             align-items: center;
         }
 
-        header {
-            width: 100%;
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+ .glow header {
+            width: 85%;
+            z-index: 2;
             text-align: center;
+            border-radius: 12px;
             padding: 20px 0;
             background-color: #007bff;
             color: white;
@@ -126,7 +131,6 @@
 
         h1 { margin: 0; font-weight: 600; }
 
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 .glow {
     position: relative;
     display: inline-block;
@@ -156,6 +160,7 @@
 }
   .glow {
             display: flex;
+            flex-direction: column;
             width: 100%;
             justify-content: center;
             align-items: center;
@@ -234,7 +239,7 @@
 
 
         .text-input {
-            width: 100%;
+            width: 5%;
             height: 100px;
             padding: 15px;
             border: 2px solid #007bff;
@@ -285,12 +290,15 @@
 
         .popup-content {
             background: white;
-            padding: 40px;
+            padding: 0px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 90%;
+            max-width: 90%;
+            width: 746px;
+            height: 430px;
+            position: relative;
+            overflow:hidden;
             transform: scale(0.9);
             transition: transform 0.3s ease-out;
         }
@@ -351,11 +359,14 @@
 </head>
 <body>
 
+
+
+    <main class="glow" style="colour: blue;">
+
     <header>
         <h1>Typing Trainer Pro</h1>
     </header>
 
-    <main class="glow" style="colour: blue;">
 <div class="container">
         <div class="stats-panel">
             <p>Net Speed: <span id="net-wpm">0</span> WPM</p>
@@ -438,18 +449,39 @@
         const initialStartBtn = document.getElementById('initial-start-btn');
 
         // Static Text Bank
-        const textBank = {
-            standard: "A journey of a thousand miles begins with a single step. The only way to do great work is to love what you do. Success is not final, failure is not fatal: it is the courage to continue that counts.",
-            code: "function fetchData(url) { return fetch(url).then(response => response.json()).catch(error => console.error('Error fetching:', error)); }",
-        };
 
         // Simulated Dynamic Content (Shows different content each time)
-        const newsBank = [
-            "Global technology giants unveil new AI models focusing on natural language processing, promising enhanced conversational capabilities for enterprise applications worldwide. Cybersecurity remains a top concern.",
-            "Local council passes a comprehensive bill to increase public funding for arts and culture initiatives, aiming to revitalize city centers and support emerging local talent across various creative fields.",
-            "The final leg of the international athletic championship concludes with record-breaking performances in long-distance running, setting a new benchmark for endurance sports globally. The host nation celebrates.",
-        ];
-        let newsIndex = 0;
+        // Static Text Bank
+const textBank = {
+    standard: "A journey of a thousand miles begins with a single step. The only way to do great work is to love what you do. Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    code: "function fetchData(url) { return fetch(url).then(response => response.json()).catch(error => console.error('Error fetching:', error)); }",
+};
+
+// --- NEW Static Content Pool (No internet fetch required) ---
+// Ab aapka 'news' mode is bade array se paragraphs chune ga.
+const newsBank = [
+    "Global leaders convened at the UN Climate Summit, committing to ambitious new targets for reducing greenhouse gas emissions by 2035, focusing heavily on transitioning from coal to renewable energy sources.",
+    "A major pharmaceutical breakthrough was announced today, involving a novel compound that shows promising results in early-stage trials for reversing certain types of age-related cognitive decline.",
+    "The International Space Agency successfully deployed the next generation of deep-space telescopes, which are expected to provide unprecedented views into the formation of early galaxies and exoplanets.",
+    "Stock markets across Asia experienced volatility this week following unexpected inflation data released by the regional central bank, leading to cautious trading in technology and consumer goods sectors.",
+    "Archaeologists in Egypt unearthed a remarkably well-preserved tomb dating back over 4,000 years, offering new insights into the burial rituals and social hierarchy of the Old Kingdom period.",
+    "Tech giants are facing increased regulatory scrutiny in Europe over data privacy and monopolistic practices, suggesting potential large-scale restructuring of digital advertising and search market dominance.",
+    "A new report highlights a significant global shift towards remote work, predicting that over 30% of high-skilled professional jobs will permanently transition out of traditional office environments by next year.",
+    "Massive forest fires in the Amazon region continue to challenge conservation efforts, prompting international calls for immediate funding and policy changes to protect vital biodiversity habitats.",
+    "Leading electric vehicle manufacturers introduced solid-state battery technology, promising double the range and significantly faster charging times than current lithium-ion power cells.",
+    "The world chess championship concluded with a surprising victory by a young challenger, marking a generational shift in dominance within the highly strategic and competitive sport.",
+    "Disputes over water rights intensified in several border regions following a year of severe drought, pushing diplomatic efforts to secure sustainable resource management agreements between neighboring countries.",
+    "Cryptocurrency adoption surged in developing economies, driven by rising inflation and a search for stable alternative investment and remittance methods among young entrepreneurs.",
+    "A collaborative scientific mission confirmed the existence of sub-glacial lakes on Mars, suggesting potential pockets of liquid water that could harbor microbial life or provide future resources.",
+    "Local governments are experimenting with four-day work weeks for public sector employees, aiming to boost productivity, improve employee well-being, and reduce urban commuting traffic congestion.",
+    "The entertainment industry is grappling with the rapid integration of advanced generative AI tools, raising complex questions about intellectual property, authorship, and the future role of human artists.",
+    "Major railway networks announced significant investments in hyperloop technology research, aiming to connect major metropolitan hubs with ultra-high-speed transit systems within the next decade.",
+    "New studies indicate that consumption of processed foods contributes more significantly to global health crises than previously estimated, prompting revised dietary guidelines and public health campaigns.",
+    "Political tensions escalated in a key maritime trade route after an incident involving naval vessels, leading to emergency diplomatic talks focused on maintaining freedom of navigation and regional stability.",
+    "Innovative vertical farming techniques utilizing LED lighting and controlled environments are being adopted by major cities to secure local, year-round fresh produce supply and minimize transport costs.",
+    "The global effort to combat vaccine-resistant diseases received a boost with the discovery of a new class of antibiotics derived from rare soil microorganisms found in remote mountainous regions."
+];
+ // Use this to cycle through the paragraphs sequentially or randomly.
 
 
         // --- Chart Setup ---
@@ -466,27 +498,17 @@
 
         // --- Core Functions ---
 
-        async function fetchDynamicContent() {
-            textDisplay.textContent = "Loading Fresh Content...";
-            textDisplay.classList.add('loading-text');
-            textInput.disabled = true;
 
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            const newsContent = newsBank[newsIndex % newsBank.length];
-            newsIndex++; // Next time, a new article will be selected
-
-            textDisplay.textContent = '';
-            textDisplay.classList.remove('loading-text');
-            return newsContent;
-        }
 
         async function loadText() {
             const mode = modeSelect.value;
             let content;
 
             if (mode === 'news') {
-                content = await fetchDynamicContent();
+            let currentIndex = parseInt(localStorage.getItem('newsIndex')) || 0;
+                content = newsBank[currentIndex % newsBank.length];
+                let nextIndex = (currentIndex + 1) % newsBank.length;
+                localStorage.setItem('newsIndex', nextIndex);
             } else {
                 content = textBank[mode];
             }
@@ -607,42 +629,96 @@
 
         // --- Pop-up Logic ---
 
-        function showResultsPopup() {
-            const finalWPM = netWpmEl.textContent;
-            const finalAccuracy = accuracyEl.textContent;
+     function showResultsPopup() {
+    // Apne pasand ki image ka URL yahan set karein
+    const BACKGROUND_IMAGE_URL = 'Time.png'; // Example URL
 
-            popupContent.innerHTML = `
-                <h2>Time's Up! Test Completed</h2>
-                <img src="https://img.icons8.com/color/96/000000/finish-flag.png" alt="Finish Flag Icon"/>
-                <div class="result-stats">
-                    <p>Net WPM: <span>${finalWPM}</span></p>
-                    <p>Accuracy: <span>${finalAccuracy}%</span></p>
-                    <p>Total Errors: <span>${errorsCountEl.textContent}</span></p>
+    const finalWPM = netWpmEl.textContent;
+    const finalAccuracy = accuracyEl.textContent;
+
+    // Poora content template naye style aur positioning ke saath
+    popupContent.innerHTML = `
+
+        <div id="result-background" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('${BACKGROUND_IMAGE_URL}'); /* Image URL use kiya */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.8; /* Image ko halka karne ke liye */
+            z-index: 5; /* Background ko content se peeche rakhne ke liye */
+        "></div>
+
+        <div style="position: relative; z-index: 10; width: 100%; height: 100%; color: #333; padding: 10px;">
+
+
+
+            <div class="result-stats" style="
+                position: absolute;
+                background-color: white;
+                border: 3px solid;
+                border-color:#129612;
+                border-radius:15px;
+                bottom: 6%;
+                right: 10%;
+                font-size: 1.2em;
+                text-align: center;
+                width: 25%;
+            ">
+                <p style="margin: 5px 0;">Net WPM: <span style="font-weight: 700; color: #5cb85c;">${finalWPM}</span></p>
+                <p style="margin: 5px 0;">Accuracy: <span style="font-weight: 700; color: #5cb85c;">${finalAccuracy}%</span></p>
+                <p style="margin: 5px 0;">Total Errors: <span style="font-weight: 700; color: #d9534f;">${errorsCountEl.textContent}</span></p>
+            </div>
+
+            <div class="popup-controls" style="
+                position: absolute;
+                bottom: 8%;
+                // width: 30%;
+                left: 20%;
+                transform: translateX(-50%); /* Center horizontally */
+            ">
+                <button style="color:#14FF99; background-color:#129612;" onclick="startCountdown()">Restart Test</button>
+                <div class="popup-time-select" style="border:3px solid #129612; border-radius: 10px; overflow:hidden;" >
+                    <select id="popup-time-select">
+                        <option value="60">1 Min</option>
+                        <option value="180">3 Mins</option>
+                        <option value="300">5 Mins</option>
+                    </select>
+                    <input type="number" id="popup-custom-time" min="10" max="600" value="${state.initialTime}" placeholder="Custom (s)">
                 </div>
-                <div class="popup-controls">
-                    <button onclick="startCountdown()">Restart Test</button>
-                    <div class="popup-time-select">
-                        <select id="popup-time-select">
-                            <option value="60">1 Min</option>
-                            <option value="180">3 Mins</option>
-                            <option value="300">5 Mins</option>
-                        </select>
-                        <input type="number" id="popup-custom-time" min="10" max="600" value="${state.initialTime}" placeholder="Custom (s)">
-                    </div>
-                </div>
-            `;
+            </div>
 
-            // Sync time options to the popup
-            document.getElementById('popup-time-select').value = state.initialTime;
-            document.getElementById('popup-custom-time').value = state.initialTime;
+        </div>
+    `;
 
-            popupOverlay.style.display = 'flex';
-            popupContent.classList.add('show');
+    // Ensure the overall pop-up container (popupContent) is correctly sized and positioned relative to body.
+    // Aapko apni CSS file mein .popup-content ko manually adjust karna padega.
+    // Recommended CSS adjustments (Agar yeh aapke main CSS mein nahi hain):
+    /*
+    .popup-content {
+        position: relative;
+        width: 450px;
+        height: 350px;
+        padding: 0;
+        background-color: white; /* Ya jo bhi aap chahte hain *
+    }
+    */
 
-            // Attach listeners to popup controls
-            document.getElementById('popup-time-select').addEventListener('change', syncTimeAndReset);
-            document.getElementById('popup-custom-time').addEventListener('change', syncTimeAndReset);
-        }
+    // Sync time options to the popup
+    document.getElementById('popup-time-select').value = state.initialTime;
+    document.getElementById('popup-custom-time').value = state.initialTime;
+
+    popupOverlay.style.display = 'flex';
+    popupContent.classList.add('show');
+
+    // Attach listeners to popup controls
+    document.getElementById('popup-time-select').addEventListener('change', syncTimeAndReset);
+    document.getElementById('popup-custom-time').addEventListener('change', syncTimeAndReset);
+}
 
         function startCountdown() {
             let count = 3;
