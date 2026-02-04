@@ -3,103 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Speed Pro</title>
-    <link rel="icon" type="jpg" href="icon.jpg">
+    <title>Typing Speed Pro - Live News Edition</title>
+    <link rel="icon" type="image/jpg" href="icon.jpg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-.gradient-border-wrapper {
-    position: relative;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 9999px;
-    background: transparent;
-    overflow: hidden;
-}
+        /* --- ORIGINAL STYLES PRESERVED --- */
+        .gradient-border-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 9999px;
+            background: transparent;
+            overflow: hidden;
+        }
 
-.border-wrapper {
-    position: relative;
-    display: flex;
-    padding: 3px;
-    border-radius: 10px;
-    background: transparent;
-    overflow: hidden;
-    width:100%;
-}
+        .border-wrapper {
+            position: relative;
+            display: flex;
+            padding: 3px;
+            border-radius: 10px;
+            background: transparent;
+            overflow: hidden;
+            width:100%;
+        }
 
-.gradient-border-wrapper::before {
-    content: "";
-    position: absolute;
-    right: -17px;
-    top: -38px;
-    insert: -50%;
-    width: 150px;
-    height: 150px;
-    background: conic-gradient(
-        #4285f4,
-        #ea4335,
-        #fbbc05,
-        #34a853,
-        #4285f4
-    );
-    animation: google-ring-spin 3s linear infinite;
-}
+        .gradient-border-wrapper::before {
+            content: "";
+            position: absolute;
+            right: -17px;
+            top: -38px;
+            insert: -50%;
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(
+                #4285f4,
+                #ea4335,
+                #fbbc05,
+                #34a853,
+                #4285f4
+            );
+            animation: google-ring-spin 3s linear infinite;
+        }
 
+        .border-wrapper::before {
+            content: "";
+            position: absolute;
+            right: -15%;
+            top: -470px;
+            insert: -50%;
+            width: 130%;
+            height: 700%;
+            background: conic-gradient(
+                #4285f4,
+                #ea4335,
+                #fbbc05,
+                #34a853,
+                #4285f4
+            );
+            animation: google-ring-spin 3s linear infinite;
+        }
 
-.border-wrapper::before {
-    content: "";
-    position: absolute;
-    right: -15%;
-    top: -470px;
-    insert: -50%;
-    width: 130%;
-    height: 700%;
-    background: conic-gradient(
-        #4285f4,
-        #ea4335,
-        #fbbc05,
-        #34a853,
-        #4285f4
-    );
-    animation: google-ring-spin 3s linear infinite;
-}
-.gradient-border-wrapper .inner-button {
-    position: relative;
-    z-index: 1;
-    border: none;
-    border-radius: 999px;
-    padding: 10px 26px;
-    background: #111;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-}
+        .gradient-border-wrapper .inner-button {
+            position: relative;
+            z-index: 1;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 26px;
+            background: #111;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
 
+        @keyframes google-ring-spin {
+            0%    { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-@keyframes google-ring-spin {
-    0%    { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
-.border-wrapper .inner-button {
-    position: relative;
-    z-index: 1;
-    border: none;
-    border-radius: 10px;
-    padding: 60px;
-    background: #D1FFFF;
-    color: black;
-    font-size: 1.4em;
-    cursor: pointer;
-}
-
-
-@keyframes google-ring-spin {
-    0%    { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
+        .border-wrapper .inner-button {
+            position: relative;
+            z-index: 1;
+            border: none;
+            border-radius: 10px;
+            padding: 60px;
+            background: #D1FFFF;
+            color: black;
+            font-size: 1.4em;
+            cursor: pointer;
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -112,8 +104,7 @@
             align-items: center;
         }
 
-
-    .glow header {
+        .glow header {
             width: 96%;
             z-index: 2;
             text-align: center;
@@ -126,34 +117,33 @@
 
         h1 { margin: 0; font-weight: 600; }
 
-.glow {
-    position: relative;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 9999px;
+        .glow {
+            position: relative;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 9999px;
+            background: transparent;
+            overflow: hidden;
+        }
 
-    background: transparent;
-    overflow: hidden;
-}
-
-.glow::before {
-    content: "";
-    position: absolute;
-    content-position: center;
-    align-item: center;
-    insert: -50%;
-    width: calc(hypot(100vh, 100vh) + 900px);
-    aspect-ratio:1/1;
-    background: conic-gradient(
-        #4285f4,
-        #ea4335,
-        #fbbc05,
-        #34a853,
-        #4285f4
-    );
-    animation: google-ring-spin 3s linear infinite;
-}
-    .glow {
+        .glow::before {
+            content: "";
+            position: absolute;
+            content-position: center;
+            align-item: center;
+            insert: -50%;
+            width: calc(hypot(100vh, 100vh) + 900px);
+            aspect-ratio:1/1;
+            background: conic-gradient(
+                #4285f4,
+                #ea4335,
+                #fbbc05,
+                #34a853,
+                #4285f4
+            );
+            animation: google-ring-spin 3s linear infinite;
+        }
+        .glow {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -166,8 +156,6 @@
             position: relative;
         }
 
-
-
         .container {
             width: 90%;
             margin-top: 30px;
@@ -178,6 +166,7 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             position: relative;
         }
+
         .stats-panel {
             display: flex;
             justify-content: space-around;
@@ -193,7 +182,6 @@
         .stats-panel span { font-weight: 700; color: #d9534f; }
         #net-wpm, #accuracy { color: #5cb85c; }
 
-
         .graph-container {
             padding: 20px;
             border: 1px solid #ddd;
@@ -203,11 +191,23 @@
             background-color:#A6D2FF;
         }
 
+        /* --- NEW: News Meta Data Style --- */
+        .news-metadata {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            font-size: 0.9em;
+            display: none; /* Hidden by default */
+        }
+        .news-metadata span { color: #fbbc05; font-weight: bold; }
 
         .typing-text-display {
             background-color: #ADFF5C;
             padding: 25px;
-            border-radius: 8px;
+            border-radius: 8px; /* Adjusted if news header is present */
             font-size: 1.4em;
             line-height: 1.8;
             margin-bottom: 20px;      
@@ -219,9 +219,7 @@
             scroll-behavior: smooth; 
         }
 
-        .typing-text-display span {
-            display: inline-block;
-        }
+        .typing-text-display span { display: inline-block; }
 
         .correct { color: #5cb85c; }
         .incorrect {
@@ -235,7 +233,6 @@
             animation: blink 1s step-start 0s infinite;
         }
         @keyframes blink { 50% { border-right-color: transparent; } }
-
 
         .text-input {
             width: 100%;
@@ -252,7 +249,6 @@
             margin-bottom: 20px;
             transition: box-shadow 0.3s;
         }
-        
 
         .controls {
             display: flex;
@@ -269,9 +265,7 @@
             color: #333;
         }
 
-
         .loading-text { color: #007bff; font-style: italic; }
-
 
         .popup-overlay {
             position: fixed;
@@ -301,17 +295,9 @@
             transform: scale(0.9);
             transition: transform 0.3s ease-out;
         }
-        .popup-content.show {
-            transform: scale(1);
-        }
-
+        .popup-content.show { transform: scale(1); }
 
         .popup-content h2 { color: #d9534f; font-size: 2.5em; margin-top: 0; }
-        .popup-content .result-stats p { font-size: 1.2em; font-weight: 500; }
-        .popup-content .result-stats span { font-weight: 700; color: #007bff; }
-        .popup-content img { width: 80px; height: 80px; margin-bottom: 20px; }
-
-
         .countdown-number {
             font-size: 10em;
             font-weight: 900;
@@ -330,35 +316,15 @@
             flex-direction: column;
             gap: 10px;
         }
-        .popup-controls button {
-            background-color: #5cb85c;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .popup-controls button:hover {
-            background-color: #449d44;
-        }
         .popup-time-select {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 15px;
         }
-        .popup-time-select select, .popup-time-select input {
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
-
-
 
     <main class="glow" style="colour: blue;">
 
@@ -380,62 +346,62 @@
         </div>
 
         <div id="initial-controls" class="controls">
-    <select id="time-unit" style="width: 120px;">
-        <option value="seconds">Seconds</option>
-        <option value="minutes">Minutes</option>
-    </select>
-    
-    <input type="number" id="time-value" min="1" value="60" style="width: 100px;">
+            <select id="time-unit" style="width: 120px;">
+                <option value="seconds">Seconds</option>
+                <option value="minutes">Minutes</option>
+            </select>
 
-    <select id="lesson-mode">
-        <option value="news">Dynamic News (Recommended)</option>
-        <option value="standard">Static Paragraph</option>
-        <option value="code">Code Syntax</option>
-    </select>
-    
-    <div class="gradient-border-wrapper">
-        <button id="initial-start-btn" class="inner-button" style="background-color: black;">Start Test</button> 
-    </div>
-</div>
-    
+            <input type="number" id="time-value" min="1" value="60" style="width: 100px;">
+
+            <select id="lesson-mode">
+                <option value="news">Dynamic News (Auto-Fetch)</option>
+                <option value="standard">Static Paragraph</option>
+                <option value="code">Code Syntax</option>
+            </select>
+
+            <div class="gradient-border-wrapper">
+                <button id="initial-start-btn" class="inner-button" style="background-color: black;">Start Test</button> 
+            </div>
+        </div>
+
+        <div id="news-metadata" class="news-metadata">
+            Topic: <span id="news-topic">Loading...</span> | Date: <span id="news-date">...</span>
+        </div>
+
         <div id="typing-text-display" class="typing-text-display loading-text">
             Loading Fresh Content... Please wait.
         </div>
 
-
-
-
-<div class="border-wrapper">
-        <textarea id="text-input" class="inner-button" style="colour: #D1FFFF; width:100%;" placeholder="Type here when the countdown finishes..." autofocus enhanced>
-        </textarea>
-</div> </div>
+        <div class="border-wrapper">
+            <textarea id="text-input" class="inner-button" style="colour: #D1FFFF; width:100%;" placeholder="Type here when the countdown finishes..." autofocus enhanced></textarea>
+        </div> 
+</div>
     </main>
 
     <div id="popup-overlay" class="popup-overlay">
         <div id="popup-content" class="popup-content">
-            </div>
+        </div>
     </div>
 
 <script>
-   
+    // --- DATA HANDLING ---
     const textBank = {
         standard: "A journey of a thousand miles begins with a single step. The only way to do great work is to love what you do. Success is not final, failure is not fatal: it is the courage to continue that counts.",
         code: "function fetchData(url) { return fetch(url).then(response => response.json()).catch(error => console.error('Error fetching:', error)); }"
     };
 
-    const newsBank = [
-        `Nuclear power contributed only around 3% of the electricity generated in India in 2024-25. The government has set a target to install 100 GW of nuclear capacity by 2047.`,
-        `The Supreme Court’s direction to the CBI to conduct a pan-India investigation into cyber-crimes, and “digital arrest” scams in particular, might seem extraordinary.`,
-        `In line with a series of hostile moves, the U.S. seized a Venezuelan oil tanker, Skipper, on December 10. Venezuela called it piracy.`
-    ];
+    // Store fetched news here
+    let newsArticles = [];
+    let currentNewsItem = null;
 
+    // --- STATE MANAGEMENT ---
     let state = {
         testText: "", currentCharIndex: 0, totalErrors: 0, correctKeystrokes: 0,
         incorrectKeystrokes: 0, timerId: null, initialTime: 60, timeLeft: 60,
         isRunning: false, wpmHistory: [], historyLabels: [], timeElapsed: 0,
     };
 
-   
+    // --- DOM ELEMENTS ---
     const textDisplay = document.getElementById('typing-text-display');
     const textInput = document.getElementById('text-input');
     const modeSelect = document.getElementById('lesson-mode');
@@ -448,8 +414,11 @@
     const popupOverlay = document.getElementById('popup-overlay');
     const popupContent = document.getElementById('popup-content');
     const initialStartBtn = document.getElementById('initial-start-btn');
+    const newsMetadata = document.getElementById('news-metadata');
+    const newsTopic = document.getElementById('news-topic');
+    const newsDate = document.getElementById('news-date');
 
-    
+    // --- CHART SETUP ---
     const ctx = document.getElementById('wpm-chart').getContext('2d');
     const wpmChart = new Chart(ctx, {
         type: 'line',
@@ -457,14 +426,62 @@
         options: { responsive: true, maintainAspectRatio: false }
     });
 
-    
-    async function loadText() {
+    // --- FETCH NEWS FUNCTION (NEW) ---
+    async function fetchNewsData() {
+        try {
+            // '2.json' is generated by your GitHub Action
+            const response = await fetch('2.json'); 
+            if (!response.ok) throw new Error("File not found");
+            const data = await response.json();
+            
+            // Filter out short/bad news
+            newsArticles = data.filter(item => item.content && item.content.length > 50);
+            
+            console.log("News loaded:", newsArticles.length);
+            // Refresh text if we are currently in news mode
+            if (modeSelect.value === 'news') loadText();
+        } catch (error) {
+            console.error("Failed to load news:", error);
+            // Fallback content if file not found
+            newsArticles = [{
+                title: "Connection Error",
+                date: new Date().toISOString().split('T')[0],
+                content: "Could not load the latest news from 2.json. Please check your internet connection or ensure the file exists in the repository. In the meantime, you can practice with this placeholder text."
+            }];
+            if (modeSelect.value === 'news') loadText();
+        }
+    }
+
+    // --- LOAD TEXT FUNCTION (UPDATED) ---
+    function loadText() {
         const mode = modeSelect.value;
-        let content = (mode === 'news') ? newsBank[Math.floor(Math.random() * newsBank.length)] : textBank[mode];
+        let content = "";
+
+        // Hide news metadata by default
+        newsMetadata.style.display = 'none';
+
+        if (mode === 'news') {
+            if (newsArticles.length > 0) {
+                // Pick random news
+                currentNewsItem = newsArticles[Math.floor(Math.random() * newsArticles.length)];
+                content = currentNewsItem.content;
+                
+                // Show Metadata
+                newsMetadata.style.display = 'block';
+                newsTopic.innerText = currentNewsItem.title.substring(0, 60) + (currentNewsItem.title.length > 60 ? "..." : "");
+                newsDate.innerText = currentNewsItem.date;
+            } else {
+                content = "Loading latest news... Please wait.";
+                // Try fetching again if empty
+                fetchNewsData();
+            }
+        } else {
+            content = textBank[mode];
+        }
 
         if (content) {
             textDisplay.classList.remove('loading-text');
-            state.testText = content.replace(/\s+/g, ' ');
+            state.testText = content.replace(/\s+/g, ' '); // Clean extra spaces
             textDisplay.innerHTML = '';
             state.testText.split('').forEach((char, index) => {
                 const span = document.createElement('span');
@@ -480,7 +497,6 @@
         const unit = timeUnitEl.value;
         let val = parseInt(timeValueEl.value) || 0;
 
-        
         if (unit === "minutes" && val > 10) val = 10;
         if (unit === "seconds" && val > 600) val = 600;
         timeValueEl.value = val;
@@ -491,8 +507,7 @@
         state.initialTime = totalSeconds;
         state.timeLeft = totalSeconds;
         timeLeftEl.textContent = totalSeconds;
-        
-        
+
         if(!state.isRunning) {
             netWpmEl.textContent = '0';
             accuracyEl.textContent = '100';
@@ -502,8 +517,7 @@
 
     function startCountdown() {
         if (state.timerId) clearInterval(state.timerId);
-        
-        
+
         state.currentCharIndex = 0;
         state.totalErrors = 0;
         state.correctKeystrokes = 0;
@@ -518,7 +532,7 @@
         let count = 3;
         popupOverlay.style.display = 'flex';
         popupContent.classList.add('show');
-        
+
         const countdownInterval = setInterval(() => {
             if (count > 0) {
                 popupContent.innerHTML = `<div class="countdown-number">${count}</div>`;
@@ -539,8 +553,7 @@
         textInput.disabled = false;
         textInput.style.pointerEvents = "auto";
         textInput.focus();
-        
-        
+
         wpmChart.data.labels = [];
         wpmChart.data.datasets[0].data = [];
         wpmChart.update();
@@ -567,7 +580,7 @@
         const mins = state.timeElapsed / 60;
         let netWPM = mins > 0 ? ((state.correctKeystrokes / 5) - state.totalErrors) / mins : 0;
         netWPM = Math.max(0, Math.round(netWPM));
-        
+
         netWpmEl.textContent = netWPM;
         const total = state.correctKeystrokes + state.incorrectKeystrokes;
         accuracyEl.textContent = total > 0 ? Math.round((state.correctKeystrokes / total) * 100) : 100;
@@ -617,7 +630,7 @@
     }
 
     function showResultsPopup() {
-        const BACKGROUND_IMAGE_URL = 'Time.png';
+        const BACKGROUND_IMAGE_URL = 'Time.png'; // Ensure this image exists
         popupContent.innerHTML = `
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('${BACKGROUND_IMAGE_URL}'); background-size: cover; background-position: center; opacity: 0.8; z-index: 5;"></div>
             <div style="position: relative; z-index: 10; width: 100%; height: 100%; color: #333; padding: 10px;">
@@ -655,7 +668,7 @@
         popupContent.classList.add('show');
     }
 
-    
+    // --- EVENT LISTENERS ---
     textInput.addEventListener('input', handleInput);
     initialStartBtn.addEventListener('click', () => {
         syncTimeAndReset();
@@ -663,13 +676,16 @@
     });
     modeSelect.addEventListener('change', loadText);
 
-    
+    // --- INITIALIZATION ---
     window.onload = () => {
         timeUnitEl.value = "minutes";
         timeValueEl.value = "1";
         textInput.disabled = true;
         textInput.style.pointerEvents = "none";
-        loadText();
+        
+        // Start fetching news immediately
+        fetchNewsData(); 
+        loadText(); // Initial load
         syncTimeAndReset();
     };
 </script>
