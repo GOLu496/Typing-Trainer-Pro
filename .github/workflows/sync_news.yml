@@ -1,6 +1,7 @@
 name: Sync News from Scraper Repo
 
 on:
+  push:
   schedule:
     # Scraper ke chalne ke 30 min baad chalega (Subah 7:30 AM IST)
     # Taaki sure ho jayein ki nayi news generate ho chuki hai
