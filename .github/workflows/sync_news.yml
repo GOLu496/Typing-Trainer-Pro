@@ -1,0 +1,38 @@
+name: Sync News from Scraper Repo
+
+on:
+  schedule:
+    # Scraper ke chalne ke 30 min baad chalega (Subah 7:30 AM IST)
+    # Taaki sure ho jayein ki nayi news generate ho chuki hai
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Button to run manually
+
+permissions:
+  contents: write
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Typing Trainer Repo
+        uses: actions/checkout@v3
+
+      - name: Download 2.json from Scraper Repo
+        run: |
+          # Niche diye gaye URL ko apne Scraper Repo ke RAW link se badal dein
+          # Example: https://raw.githubusercontent.com/User/Daily-News/main/2.json
+          
+          curl -o 2.json -L "https://raw.githubusercontent.com/GOLutheGhosT-4444/Today-Current-Affairs/refs/heads/main/2.json"
+          
+          # Check karein file download hui ya nahi
+          ls -la 2.json
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "SyncBot"
+          git config --global user.email "bot@github.com"
+          
+          # Sirf tabhi commit karega agar file mein koi change hoga
+          git add 2.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Updated latest news from Scraper" && git push)
